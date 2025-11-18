@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
 
 public class RadixSort {
     // Iniciamos construyendo un main
@@ -25,6 +28,23 @@ public class RadixSort {
 
     }
 
-    
+    // Ahora voy a construir la funcion para leer los archivos
+    public static int[] leerArchivo(String nombreArchivo) {
+        ArrayList<Integer> numeros = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] valores = linea.split("[,\\s]+");
+                for (String v : valores) {
+                    if (!v.trim().isEmpty()) {
+                        numeros.add(Integer.parseInt(v.trim()));
+                    }
+                }
+            }
+        }
+    }
 
 }
+
+
