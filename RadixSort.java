@@ -59,6 +59,17 @@ public class RadixSort {
         return max;
     }
 
+    // Proceso de RadixSort
+    public static void radixSort(int[] arr) {
+        int max = obtenerMaximo(arr);
+
+        // El for procesara por cada dígito 
+        for (int exp = 1; max / exp > 0; exp *= 10) {
+            countingSortPorDigito(arr, exp);
+            System.out.print("Ordenando por dígito (" + exp + "): ");
+            imprimirArray(arr); // Y aqui mostrara el proceso en tiempo real
+        }
+    }
 }
 
 
