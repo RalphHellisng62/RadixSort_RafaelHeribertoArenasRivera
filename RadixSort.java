@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -87,6 +88,27 @@ public class RadixSort {
             conteo[i] += conteo[i - 1];
         }
 
+        // Se construira el arreglo de salida
+        for (int i = arr.length - 1; i >= 0; i--) {
+            int indice = (arr[i] / exp) % 10;
+            salida[conteo[indice] - 1] = arr[i];
+            conteo[indice]--;
+        }
+
+        // Se copiara al arreglo original
+        System.arraycopy(salida, 0, arr, 0, arr.length);
+
+    }
+    
+    // Guardara el resultado en un archivo
+    public static void guardarArchivo(String nombreArchivo, int[] datos) {
+        try (FileWriter fw = new FileWriter(nombreArchivo)) {
+            for (int num : datos) {
+                fw.write(num + " ");
+            }
+        } catch (IOException e) {
+            System.out.println("Error al guardar archivo: " + e.getMessage());
+        }
     }
 }
 
